@@ -19,7 +19,8 @@ public class Student {
 	}
 	
 	/**
-	 * @return
+	 * @return name
+	 * This name returns student's name.
 	 */
 	public String getName() {
 		return name;
@@ -27,13 +28,15 @@ public class Student {
 	
 	/**
 	 * @param name
+	 * This method sets student's name.
 	 */
 	public void setName(String name) {
 		this.name = name;
 	}
 	
 	/**
-	 * @return
+	 * @return surname
+	 * This method returns student's surname.
 	 */
 	public String getSurname() {
 		return surname;
@@ -41,13 +44,15 @@ public class Student {
 	
 	/**
 	 * @param surname
+	 * This method sets student's surname.
 	 */
 	public void setSurname(String surname) {
 		this.surname = surname;
 	}
 	
 	/**
-	 * @return
+	 * @return number
+	 * This method returns student's number.
 	 */
 	public String getNumber() {
 		return number;
@@ -55,8 +60,9 @@ public class Student {
 	
 	/**
 	 * @param number
+	 * This method sets student's number.
 	 */
-	public void setNumber(String number) {
+	public void setNumber(String number, String test) {
 		this.number = number;
 	}
 
@@ -67,6 +73,15 @@ public class Student {
 	@Override
 	public String toString() {
 		return "Student [name=" + name + ", surname=" + surname + ", number=" + number + "]";
+	}
+	
+	/**
+	 * This is a private dummy method of student class.
+	 * This method is written for testing purposes.
+	 * @return 5
+	 */
+	private static int test() {
+		return 5;
 	}
 	
 	

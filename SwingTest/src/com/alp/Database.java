@@ -12,8 +12,9 @@ public class Database {
 
 	
 	/**
-	 * @return
+	 * @return conn
 	 * @throws SQLException 
+	 * This method returns a database connection object.
 	 */
 	public static Connection connect() throws SQLException {
 		Connection conn = null;

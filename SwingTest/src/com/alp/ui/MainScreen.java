@@ -2,8 +2,6 @@ package com.alp.ui;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 import javax.swing.JButton;
@@ -11,8 +9,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
-import com.alp.util.DatabaseConnection;
-import com.alp.dao.StudentDao;
+import com.alp.dao.Dao;
 import com.alp.dao.StudentDaoImpl;
 import com.alp.model.Student;
 
@@ -68,10 +65,10 @@ public class MainScreen extends JFrame {
 				Student s = new Student(nameField.getText(), surnameField.getText(), numberField.getText());
 				System.out.println(s);
 
-				StudentDao stuDao = new StudentDaoImpl();
+				Dao<Student> studentDao = new StudentDaoImpl();
 				
 				try {
-					stuDao.add(s);
+					studentDao.save(s);
 					infoLabel.setText("Added record to database.");
 				} catch (SQLException ex) {
 					ex.printStackTrace();

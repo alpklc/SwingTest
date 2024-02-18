@@ -11,35 +11,11 @@ import com.alp.model.Student;
 import com.alp.util.DatabaseConnection;
 
 public class StudentDaoImpl implements StudentDao {
-	
+
 	static Connection conn = DatabaseConnection.getInstance().getConnection();
 
 	@Override
-	public int add(Student student) throws SQLException {
-		String query = "INSERT INTO student.student(name, surname, number) "
-				+ "VALUES (?, ?, ?)";
-		
-		PreparedStatement statement = conn.prepareStatement(query);
-		statement.setString(1, student.getName());
-		statement.setString(2, student.getSurname());
-		statement.setString(3, student.getNumber());
-		
-		statement.addBatch();
-		
-		return statement.executeUpdate();
-	}
-
-	@Override
-	public void delete(int id) throws SQLException {
-		String query = "DELETE FROM student.student WHERE id = ?";
-		
-		PreparedStatement statement = conn.prepareStatement(query);
-		statement.setInt(1, id);
-		statement.executeUpdate();
-	}
-
-	@Override
-	public Student getStudent(int id) throws SQLException {
+	public Student get(int id) throws SQLException {
 		String query = "SELECT * FROM student.student id = ?";
 		
 		PreparedStatement statement = conn.prepareStatement(query);
@@ -64,7 +40,7 @@ public class StudentDaoImpl implements StudentDao {
 	}
 
 	@Override
-	public List<Student> getStudents() throws SQLException {
+	public List<Student> getAll() throws SQLException {
 		String query = "SELECT * FROM student.student";
 		
 		PreparedStatement statement = conn.prepareStatement(query);
@@ -82,17 +58,43 @@ public class StudentDaoImpl implements StudentDao {
 	}
 
 	@Override
-	public void update(Student student) throws SQLException {
-		String query = "UPDATE student.student " + 
-					"SET name = ?, surname = ?, number = ? " +
-					"WHERE id = ?";
+	public int save(Student t) throws SQLException {
+		String query = "INSERT INTO student.student(name, surname, number) "
+				+ "VALUES (?, ?, ?)";
 		
 		PreparedStatement statement = conn.prepareStatement(query);
-		statement.setString(1, student.getName());
-		statement.setString(2, student.getSurname());
-		statement.setString(3, student.getNumber());
+		statement.setString(1, t.getName());
+		statement.setString(2, t.getSurname());
+		statement.setString(3, t.getNumber());
+		
+		statement.addBatch();
+		
+		return statement.executeUpdate();
+	}
+
+	@Override
+	public void update(Student t) throws SQLException {
+		String query = "UPDATE student.student " + 
+				"SET name = ?, surname = ?, number = ? " +
+				"WHERE id = ?";
+	
+		PreparedStatement statement = conn.prepareStatement(query);
+		statement.setString(1, t.getName());
+		statement.setString(2, t.getSurname());
+		statement.setString(3, t.getNumber());
 		
 		statement.executeUpdate();
 	}
+
+	@Override
+	public void delete(int id) throws SQLException {
+		String query = "DELETE FROM student.student WHERE id = ?";
+		
+		PreparedStatement statement = conn.prepareStatement(query);
+		statement.setInt(1, id);
+		statement.executeUpdate();
+	}
+	
+
 
 }
